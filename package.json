@@ -4,15 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "debug": "ts-node ./src/test.ts"
+    "test": "ts-node ./src/test.ts",
+    "aad": "ts-node ./src/aad-test.ts",
+    "arm": "ts-node ./src/resourcemanager-sample.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@azure/ai-text-analytics": "^5.0.0",
+    "@azure/arm-batch": "^5.1.0",
     "@azure/batch": "^8.0.0",
+    "@azure/identity": "^1.5.0",
+    "@azure/ms-rest-js": "^2.2.2",
     "@azure/ms-rest-nodeauth": "^3.0.6",
+    "@azure/msal-node": "^1.1.0",
+    "dotenv": "^10.0.0",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3"
   }

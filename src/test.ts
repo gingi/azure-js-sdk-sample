@@ -1,7 +1,11 @@
 import { BatchServiceClient, BatchServiceModels, BatchSharedKeyCredentials } from "@azure/batch";
 
-const batchAccountName = process.env["AZURE_BATCH_ACCOUNT_NAME"] || "";
-const batchAccountKey = process.env["AZURE_BATCH_ACCOUNT_KEY"] || "";
+import * as dotenv from "dotenv";
+
+dotenv.config();
+
+const batchAccountName = process.env["AZURE_BATCH_ACCOUNT"] || "";
+const batchAccountKey = process.env["AZURE_BATCH_ACCESS_KEY"] || "";
 const batchEndpoint = process.env["AZURE_BATCH_ENDPOINT"] || "";
 
 const JOB_ID = "testbejob1";
@@ -88,16 +92,13 @@ function scenario2() {
     async function getCloudTasks(jobId: string): Promise<Array<BatchServiceModels.CloudTask>> {
         const options: BatchServiceModels.TaskListOptionalParams = { taskListOptions: { maxResults: 4 } };
 
-        // let job = await client.job.get(jobId);
-        // if (!job) {
-        //     console.log(`Job ${jobId} does not exist. Creating...`);
-        //     job = await client.job.add({
-        //         jobId,
-
-        //     })
-        // } else {
-        //     console.log(job);
-        // }
+        let jobAdd = await client.job.get(jobId);
+        if (!jobAdd) {
+            console.log(`Job ${jobId} does not exist. Creating...`);
+            let job = await client.job.add({ id: jobId, poolInfo: { poolId: "pool1"} })
+        } else {
+            console.log(jobAdd);
+        }
         let result: BatchServiceModels.TaskListResponse = await client.task.list(jobId, options);
         console.log(`Task count: ${result.length}`);
 
@@ -127,4 +128,4 @@ function scenario2() {
         ).catch((reason: any) => console.error(reason.message))
 }
 
-scenario2();
+scenario1();
