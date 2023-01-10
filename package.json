@@ -15,10 +15,10 @@
     "@azure/ai-text-analytics": "^5.0.0",
     "@azure/arm-batch": "^5.1.0",
     "@azure/batch": "^8.0.0",
-    "@azure/identity": "^1.5.0",
+    "@azure/identity": "^3.1.2",
     "@azure/ms-rest-js": "^2.2.2",
     "@azure/ms-rest-nodeauth": "^3.0.8",
-    "@azure/msal-node": "^1.1.0",
+    "@azure/msal-node": "^1.14.6",
     "dotenv": "^10.0.0",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3"
